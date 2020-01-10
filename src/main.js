@@ -4,22 +4,25 @@ import Vue from 'vue'
 import App from './App.vue'
 import VueTouch from 'vue-touch'
 import router from './router'
-import Ajax from './libs/ajax'
+import Ajax from './utils/ajax'
 import store from './store'
-import iView from 'iview'
-import 'iview/dist/styles/iview.css'    // 使用 CSS
+import MintUI from 'mint-ui'
+import 'mint-ui/lib/style.css'
 import vuescroll from 'vue-scroll'
 
 Vue.use(vuescroll)
 VueTouch.config.swipe = {
   direction: 'horizontal'
-};
-Vue.use(VueTouch, {name: 'v-touch'})
-Vue.use(iView);
-Vue.config.productionTip = false;
+}
+
+Vue.use(VueTouch, {
+  name: 'v-touch'
+})
+Vue.use(MintUI)
+Vue.config.productionTip = false
 Vue.use(Ajax, {
-  baseURL: 'http://localhost:3000'
-});
+  baseURL: 'http://65.49.197.99:3000/'
+})
 
 /* eslint-disable no-new */
 new Vue({
@@ -30,14 +33,10 @@ new Vue({
   components: {
     App
   }
-});
+})
 
-//Disable context menu
+// Disable context menu
 document.addEventListener('contextmenu', event => {
-  event.preventDefault();
-  event.stopPropagation();
-});
-//Disable double click selection
-document.addEventListener('mousedown', e => {
-  e.preventDefault();
+  event.preventDefault()
+  event.stopPropagation()
 })

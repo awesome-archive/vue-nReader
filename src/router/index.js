@@ -1,37 +1,22 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Bookshelf from '@/components/Bookshelf'
-import Bookcat from '@/components/Bookcat'
-import Rank from '@/components/Rank'
-import Overview from '@/components/Overview'
-import Ranklist from '@/components/Ranklist'
-import RanklistDetail from '@/components/RanklistDetail'
-import Book from '@/components/Book'
-import ReadBook from '@/components/ReadBook'
-import Search from '@/components/Search'
-import BookcatDetail from '@/components/BookcatDetail'
 
-Vue.use(Router);
+Vue.use(Router)
+
+const Home = resolve => require(['@/components/Home'], resolve)
+const Ranklist = resolve => require(['@/components/ranklist/Ranklist'], resolve)
+const RanklistDetail = resolve => require(['@/components/ranklist/RanklistDetail'], resolve)
+const Book = resolve => require(['@/components/common/Book'], resolve)
+const ReadBook = resolve => require(['@/components/book/ReadBook'], resolve)
+const BookcatDetail = resolve => require(['@/components/category/BookcatDetail'], resolve)
+const ChangeSource = resolve => require(['@/components/book/ChangeSource'], resolve)
 
 export default new Router({
   routes: [
     {
       path: '/',
-      component: Overview,
-      redirect: '/bookshelf',
-      children: [{
-        path: '/bookshelf',
-        name: 'bookshelf',
-        component: Bookshelf
-      }, {
-        path: '/bookcat',
-        name: 'bookcat',
-        component: Bookcat
-      }, {
-        path: '/rank',
-        name: 'rank',
-        component: Rank
-      }]
+      name: 'home',
+      component: Home
     }, {
       path: '/bookcat/detail',
       name: 'bookcatDetail',
@@ -45,11 +30,9 @@ export default new Router({
       name: 'book',
       component: Book
     }, {
-      path: '/search',
-      name: 'search',
-      component: Search
-    }, {
-      path: 'searchresult'
+      path: '/changeSource/:bookId',
+      name: 'changeSource',
+      component: ChangeSource
     }, {
       path: '/ranklist',
       name: 'ranklist',
